@@ -3,19 +3,19 @@
 
 int main()
 {
-    int volume,comprimentosala,largurasala,pedireitosala,janelas,areajanelas,portas,areaportas,pessoas,equipamentos,posicao, kcal, entreandares, sobtelhado;
-
+    int volume,comprimentosala,largurasala,pedireitosala,janelas,areajanelas,portas,areaportas,pessoas,equipamentos,posicao, kcal, entreandares, sobtelhado, metragemjanela,posicaojanela;
+    int solmanhacc, soltardecc, solmanhasc, soltardesc,vidrossombra;
     kcal = 0; // inicializando a variável
     
     // Dados de entrada
 
     printf("Dimensionamento de Ar Condicionado\n");
     printf("\nInsira os dados que serao pedidos a seguir\n");
-    printf("\nQual o comprimento da sala ou escritório?\n");
+    printf("\nQual o comprimento da sala ou escritorio?\n");
     scanf("%d", &comprimentosala);
     printf("\nQual a largura?\n");
     scanf("%d", &largurasala);
-    printf("\nQual a distancia entre o chao e o teto?");
+    printf("\nQual a distancia entre o chao e o teto?\n");
     scanf("%d", &pedireitosala);
 
     volume= comprimentosala * largurasala * pedireitosala;  // Calculo do volume
@@ -121,6 +121,108 @@ int main()
         kcal += entreandares;
     } else {
         kcal += sobtelhado;
+    }
+
+    printf("\nQuantas janelas se encontram no recinto?\n");
+    scanf("%d", &janelas);
+    printf("\nQual a area ocupada por cada janela?\n");
+    scanf("%d", &areajanelas);
+
+    metragemjanela = janelas * areajanelas; // metros quadrados totais para saber o valor da tabela
+
+    while (posicaojanela!=5){ // escolha da posição para o usuário
+    printf("\nQual e a exposicao ao sol das janelas?\n");
+    printf("\n 1- sol pela manha com cortina");
+    printf("\n 2- sol a tarde com cortina");
+    printf("\n 3- sol pela manha sem cortina");
+    printf("\n 4- sol a tarde sem cortina");
+    printf("\n 5- vidros na sombra\n");
+    scanf("%d", &posicaojanela);
+    }
+
+    switch(metragemjanela){ // implementando a tabela no código
+        case 1:
+            solmanhacc = 160;
+            soltardecc = 212;
+            solmanhasc = 222;
+            soltardesc = 410;
+            vidrossombra = 37;
+            break;
+        case 2:
+            solmanhacc = 320;
+            soltardecc = 424;
+            solmanhasc = 444;
+            soltardesc = 820;
+            vidrossombra = 74;
+            break;
+        case 3:
+            solmanhacc = 480;
+            soltardecc = 636;
+            solmanhasc = 666;
+            soltardesc = 1230;
+            vidrossombra = 110;
+            break;
+        case 4:
+            solmanhacc = 640;
+            soltardecc = 848;
+            solmanhasc = 888;
+            soltardesc = 1640;
+            vidrossombra = 148;
+            break;
+        case 5:
+            solmanhacc = 800;
+            soltardecc = 1060;
+            solmanhasc = 1110;
+            soltardesc = 2050;
+            vidrossombra = 185;
+            break;
+        case 6:
+            solmanhacc = 960;
+            soltardecc = 1272;
+            solmanhasc = 1332;
+            soltardesc = 2460;
+            vidrossombra = 222;
+            break;
+        case 7:
+            solmanhacc = 1120;
+            soltardecc = 1484;
+            solmanhasc = 1554;
+            soltardesc = 2870;
+            vidrossombra = 260;
+            break;
+        case 8:
+            solmanhacc = 1280;
+            soltardecc = 1696;
+            solmanhasc = 1777;
+            soltardesc = 3280;
+            vidrossombra = 295;
+            break;
+        case 9:
+            solmanhacc = 1440;
+            soltardecc = 1908;
+            solmanhasc = 1998;
+            soltardesc = 3960;
+            vidrossombra = 330;
+            break;
+        case 10:
+            solmanhacc = 1600;
+            soltardecc = 2120;
+            solmanhasc = 2220;
+            soltardesc = 4100;
+            vidrossombra = 370;
+            break;
+    }
+
+    if (posicaojanela == 1){
+        kcal += solmanhacc;
+    } else if (posicaojanela == 2){
+        kcal += soltardecc;
+    } else if (posicaojanela == 3){
+        kcal += solmanhasc;
+    } else if (posicaojanela == 4){
+        kcal += soltardesc;
+    } else if (posicaojanela == 5){
+        kcal += vidrossombra;
     }
 
 }
