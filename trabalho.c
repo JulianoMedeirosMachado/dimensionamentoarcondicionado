@@ -4,7 +4,7 @@
 int main()
 {
     int volume,comprimentosala,largurasala,pedireitosala,janelas,areajanelas,portas,areaportas,pessoas,equipamentos,posicao, kcal, entreandares, sobtelhado, metragemjanela,posicaojanela;
-    int solmanhacc, soltardecc, solmanhasc, soltardesc,vidrossombra;
+    int solmanhacc, soltardecc, solmanhasc, soltardesc,vidrossombra, areafinalportas, kcalportas, kcalpessoas, kcalequipamentos;
     kcal = 0; // inicializando a variável
     
     // Dados de entrada
@@ -20,9 +20,10 @@ int main()
 
     volume= comprimentosala * largurasala * pedireitosala;  // Calculo do volume
 
+    posicao = 0;
 
-    while (posicao!=2){ // escolha da posição para o usuário
-    printf("\nQual a posição do recinto?");
+    while (posicao>2 || posicao<=0 ){ // escolha da posição para o usuário
+    printf("\nQual a posicao do recinto?");
     printf("\n1 - Entre andares\n");
     printf("2 - Sob telhado\n");
     scanf("%d", &posicao);
@@ -119,18 +120,23 @@ int main()
 
     if (posicao == 1){
         kcal += entreandares;
+        printf("O gasto em kcal dessa posicao e: %d", entreandares);
     } else {
         kcal += sobtelhado;
+        printf("O gasto em kcal dessa posicao e: %d", sobtelhado);
     }
+
 
     printf("\nQuantas janelas se encontram no recinto?\n");
     scanf("%d", &janelas);
     printf("\nQual a area ocupada por cada janela?\n");
     scanf("%d", &areajanelas);
 
+    posicaojanela = 0;
+
     metragemjanela = janelas * areajanelas; // metros quadrados totais para saber o valor da tabela
 
-    while (posicaojanela!=5){ // escolha da posição para o usuário
+    while (posicaojanela>5 || posicao <= 0){ // escolha da posição para o usuário
     printf("\nQual e a exposicao ao sol das janelas?\n");
     printf("\n 1- sol pela manha com cortina");
     printf("\n 2- sol a tarde com cortina");
@@ -215,14 +221,139 @@ int main()
 
     if (posicaojanela == 1){
         kcal += solmanhacc;
+        printf("o gasto calorico ocasionado pelas janelas e %d", solmanhacc);
     } else if (posicaojanela == 2){
         kcal += soltardecc;
+        printf("o gasto calorico ocasionado pelas janelas e %d", soltardecc);
     } else if (posicaojanela == 3){
         kcal += solmanhasc;
+        printf("o gasto calorico ocasionado pelas janelas e %d", solmanhasc);
     } else if (posicaojanela == 4){
         kcal += soltardesc;
+        printf("o gasto calorico ocasionado pelas janelas e %d", soltardesc);
     } else if (posicaojanela == 5){
         kcal += vidrossombra;
+        printf("o gasto calorico ocasionado pelas janelas e %d", vidrossombra);
     }
+
+    printf("\nQuantas portas existem no recinto?\n");
+    scanf("%d", &portas);
+    printf("\nQual a area das portas?\n");
+    scanf("%d", &areaportas);
+
+    areafinalportas = portas * areaportas;
+
+    switch(areafinalportas){ //implementando a tabela no código
+        case 1:
+            kcalportas = 125;
+            break;
+        case 2:
+            kcalportas = 250;
+            break;
+        case 3:
+            kcalportas = 375;
+            break;
+        case 4:
+            kcalportas = 500;
+            break;
+        case 5:
+            kcalportas = 625;
+            break;
+        case 6:
+            kcalportas = 750;
+            break;
+        case 7:
+            kcalportas = 875;
+            break;
+        case 8:
+            kcalportas = 1000;
+            break;
+        case 9:
+            kcalportas = 1125;
+            break;
+        case 10:
+            kcalportas = 1250;
+            break;
+    }
+
+    printf("o gasto calorico ocasionado pela(s) porta(s) e %d", kcalportas);
+    kcal += kcalportas;
+
+    printf("\nQual o numero de pessoas que fica no recinto?\n");
+    scanf("%d", &pessoas);
+
+    switch(pessoas){ //implementando a tabela no código
+        case 1:
+            kcalpessoas = 125;
+            break;
+        case 2:
+            kcalpessoas = 250;
+            break;
+        case 3:
+            kcalpessoas = 375;
+            break;
+        case 4:
+            kcalpessoas = 500;
+            break;
+        case 5:
+            kcalpessoas = 625;
+            break;
+        case 6:
+            kcalpessoas = 750;
+            break;
+        case 7:
+            kcalpessoas = 875;
+            break;
+        case 8:
+            kcalpessoas = 1000;
+            break;
+        case 9:
+            kcalpessoas = 1125;
+            break;
+        case 10:
+            kcalpessoas = 1250;
+            break;
+    }
+
+    kcal += kcalpessoas;
+
+        printf("\nQuantos Watts todos os eletronicos do recinto consomem?\n");
+        scanf(" %d", &equipamentos);
+
+        switch(equipamentos){
+            case 50:
+                kcalequipamentos = 45;
+                break;
+            case 100:
+                kcalequipamentos = 90;
+                break;
+            case 150:
+                kcalequipamentos = 135;
+                break;
+            case 200:
+                kcalequipamentos = 180;
+                break;
+            case 250:
+                kcalequipamentos = 225;
+                break;
+            case 300:
+                kcalequipamentos = 270;
+                break;
+            case 350:
+                kcalequipamentos = 315;
+                break;
+            case 400:
+                kcalequipamentos = 360;
+                break;
+            case 450:
+                kcalequipamentos = 405;
+                break;
+            case 500:
+                kcalequipamentos = 450;
+                break;
+    }
+
+    printf("o gasto calorico ocasionado pelos eletronicos e %d", kcalequipamentos);
+    kcal += kcalequipamentos;
 
 }
