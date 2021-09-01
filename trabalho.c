@@ -7,20 +7,20 @@ int main()
     int solmanhacc, soltardecc, solmanhasc, soltardesc,vidrossombra, kcalportas, kcalpessoas, kcalequipamentos;
     float formulalocal, kcal, formulajanela, formulaequipamentos, formulabtu;
     kcal = 0; // inicializando a variável
-    int dimensaosala[4],janelas[3],portas[3];
+    int dimensaosala[3],janelas[2],portas[2];
     
     // Dados de entrada
 
     printf("Dimensionamento de Ar Condicionado\n");
     printf("\nInsira os dados que serao pedidos a seguir\n");
     printf("\nQual o comprimento da sala ou escritorio? ");
-    scanf("%d", &dimensaosala[1]);
+    scanf("%d", &dimensaosala[0]);
     printf("\nQual a largura? ");
-    scanf("%d", &dimensaosala[2]);
+    scanf("%d", &dimensaosala[1]);
     printf("\nQual a distancia entre o chao e o teto? ");
-    scanf("%d", &dimensaosala[3]);
+    scanf("%d", &dimensaosala[2]);
 
-    dimensaosala[4]= dimensaosala[1] * dimensaosala[2] * dimensaosala[3];  // Calculo do volume
+    dimensaosala[3]= dimensaosala[0] * dimensaosala[1] * dimensaosala[2];  // Calculo do volume
 
     posicao = 0;
 
@@ -34,23 +34,23 @@ int main()
 
     switch(posicao){ // implementando função da kcal no código
         case 1:
-            formulalocal = 16 * dimensaosala[4];
+            formulalocal = 16 * dimensaosala[3];
             break;
         case 2:
-            formulalocal = 22.3 * dimensaosala[4];
+            formulalocal = 22.3 * dimensaosala[3];
             break;
     }
 
     printf("\nO gasto em kcal dessa posicao e: %.2f\n", formulalocal);
 
     printf("\nQuantas janelas se encontram no recinto? ");
-    scanf("%d", &janelas[1]);
+    scanf("%d", &janelas[0]);
     printf("\nQual a area ocupada por cada janela? ");
-    scanf("%d", &janelas[2]);
+    scanf("%d", &janelas[1]);
 
     posicaojanela = 0; // inicializando a variável
 
-    janelas[3] = janelas[1] * janelas[2]; // metros quadrados totais para saber o valor da tabela
+    janelas[2] = janelas[0] * janelas[1]; // metros quadrados totais para saber o valor da tabela
 
     while (posicaojanela>5 || posicaojanela <= 0){ // escolha da posição para o usuário
     printf("\nQual e a exposicao ao sol das janelas?\n");
@@ -65,19 +65,19 @@ int main()
 
     switch(posicaojanela){ // implementando a formula no código
         case 1:
-            formulajanela = 160 * janelas[3];
+            formulajanela = 160 * janelas[2];
             break;
         case 2:
-            formulajanela = 212 * janelas[3];
+            formulajanela = 212 * janelas[2];
             break;
         case 3:
-            formulajanela = 222 * janelas[3];
+            formulajanela = 222 * janelas[2];
             break;
         case 4:
-            formulajanela = 410 * janelas[3];
+            formulajanela = 410 * janelas[2];
             break;
         case 5:
-            formulajanela = 37 * janelas[3];
+            formulajanela = 37 * janelas[2];
             break;
     }
 
@@ -86,13 +86,13 @@ int main()
     printf("\nO gasto calorico ocasionado pelas janela e: %.2f\n", formulajanela);
 
     printf("\nQuantas portas existem no recinto? ");
-    scanf("%d", &portas[1]);
+    scanf("%d", &portas[0]);
     printf("\nQual a area das portas? ");
-    scanf("%d", &portas[2]);
+    scanf("%d", &portas[1]);
 
-    portas[3] = portas[1] * portas[2];
+    portas[2] = portas[0] * portas[1];
 
-    kcalportas = 125 * portas[3];
+    kcalportas = 125 * portas[2];
 
     printf("\no gasto calorico ocasionado pela(s) porta(s) e %d\n", kcalportas);
     kcal += kcalportas;
@@ -122,4 +122,29 @@ int main()
 
     printf("\nO resultado em BTUs foi: %.0f\n", formulabtu);
 
+    //implementando a sugestão para ar condicionados no código
+
+    if (formulabtu <= 7500){
+        printf("\nO ar condicionado ideal para voce seria o Janela Consul 7500 BTUs Frio CCB07EB por R$ 985,50");
+    } else if (formulabtu <= 9000 && formulabtu > 7500) {
+        printf("\nO ar condicionado ideal para voce seria o Split LG 9000 BTUs Quente/Frio S4-W09WA51A por R$ 1.775,55");
+    } else if (formulabtu <= 10000 && formulabtu > 9000) {
+        printf("\nO ar condicionado ideal para voce seria o Janela Mecanico Consul 10000 BTUs Quente Frio CCS10EB por R$ 1.281,55");
+    } else if (formulabtu <= 12000 && formulabtu > 10000) {
+        printf("\nO ar condicionado ideal para voce seria o Split HW Elgin Eco Plus II 12.000 BTUs So Frio 220V R$ 1.349,10");
+    } else if (formulabtu <= 18000 && formulabtu > 12000) {
+        printf("\nO ar condicionado ideal para voce seria o Split LG Dual Inverter Voice 18.000 BTU/h Quente e Frio Monofasico S4NW18KL31B.EB2GAMZ por R$ 2.787,15");
+    } else if (formulabtu <= 24000 && formulabtu > 18000) {
+        printf("\nO ar condicionado ideal para voce seria o Split Inverter 24000 BTU Samsung Inverter Quente e Frio por R$ 3.739,15");
+    } else if (formulabtu <= 27000 && formulabtu > 24000) {
+        printf("\nO ar condicionado ideal para voce seria o Split HW Inverter Fujitsu 27.000 BTUs So Frio por R$ 3.969,10");
+    } else if (formulabtu <= 30000 && formulabtu > 27000) {
+        printf("\nO ar condicionado ideal para voce seria o Split HW Gree Eco Garden 30.000 BTUs Frio por R$ 4.179,00");
+    } else if (formulabtu <= 36000 && formulabtu > 30000) {
+        printf("\nO ar condicionado ideal para voce seria o Split Inverter High Wall Springer Midea Quente e Frio 36000 BTUs 42MBQA33M5 por R$ 6.669,00");
+    } else if (formulabtu <= 48000 && formulabtu > 36000) {
+        printf("\nO ar condicionado ideal para voce seria o Split Cassete Philco 48000 BTUs Frio por R$ 7.776,67");
+    } else if (formulabtu <= 60000 && formulabtu > 48000) {
+        printf("\nO ar condicionado ideal para voce seria o Split Piso Teto Inverter Elgin 60.000 BTUs so Frio por R$ 11.599,00");
+    }
 }
